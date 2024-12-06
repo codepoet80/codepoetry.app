@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Test for Herrie</title>
+<script>
+function handleError(image) {
+  image.src="oops.png";
+}
+function programmaticDom() {
+  var newImg = document.createElement("img");
+  newImg.src = "test1.png";
+  newImg.onerror = function() {
+	this.src="oops.png";
+  };
+  document.body.appendChild(newImg);
+}
+</script>
+</head>
+<body onload="programmaticDom()">
+Here's a working image: <img src="test.png" height="64"><br/>
+Here's a failing image: <img src="test1.png" height="64"><br/>
+Here's a failing image with an onerror fallback: <img src="test1.png" onerror="handleError(this)" height="64"><br/>
+The next image will be loaded programmtically with onerror fallback...<br/>
+</body>
+</html>
